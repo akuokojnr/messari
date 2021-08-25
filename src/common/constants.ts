@@ -4,7 +4,7 @@ export const colors = {
 
   text: "#000000",
 
-  bgColor: "#09090B",
+  bgColor: "#111317",
 };
 
 export const sizes = {
