@@ -106,8 +106,8 @@ const GlobalStyles = () => css`
   }
   html,
   body {
-    background: ${Constants.colors.white};
-    color: ${Constants.colors.text};
+    background: ${Constants.colors.bgColor};
+    color: ${Constants.colors.white};
     font-size: 10px;
     font-family: Inter, -apple-system, BlinkMacSystemFont, helvetica neue,
       helvetica, sans-serif;
