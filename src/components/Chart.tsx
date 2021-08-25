@@ -1,9 +1,11 @@
 import * as Constants from "../common/constants";
+import * as Actions from "../common/actions";
 
 import React from "react";
 
 /** @jsx jsx */
 import { css } from "@emotion/react";
+import { useQuery } from "react-query";
 
 const STYLES_WRAPPER = css`
   background: ${Constants.colors.black};
@@ -22,20 +24,27 @@ const STYLES_HEADER = css`
 `;
 
 type ChartProps = {
-  data: {
-    symbol: string;
-  };
+  assetKey: string;
 };
 
-const Chart = ({ data }: ChartProps) => {
-  const { symbol } = data;
+const Chart = ({ assetKey }: ChartProps) => {
+  const { isLoading, error, data } = useQuery(
+    "asset",
+    async () => await Actions.getAsset({ assetKey })
+  );
 
-  console.log(data);
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Encountered an error</p>;
+  }
 
   return (
     <div css={STYLES_WRAPPER}>
       <div css={STYLES_HEADER}>
-        <p className="title">{symbol}</p>
+        <p className="title">{data?.symbol}</p>
         <div></div>
       </div>
       <svg />
