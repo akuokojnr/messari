@@ -1,11 +1,15 @@
 import * as Constants from "../common/constants";
 import * as Actions from "../common/actions";
+import * as Utilities from "../common/utilities";
 
 import React from "react";
 
 /** @jsx jsx */
 import { css } from "@emotion/react";
 import { useQuery } from "react-query";
+import { Line } from "react-chartjs-2";
+
+import "chartjs-adapter-moment";
 
 const STYLES_WRAPPER = css`
   background: ${Constants.colors.black};
@@ -27,7 +31,7 @@ type ChartProps = {
   assetKey: string;
 };
 
-const Chart = ({ assetKey }: ChartProps) => {
+const LineChart = ({ assetKey }: ChartProps) => {
   const { isLoading, error, data } = useQuery(
     "asset",
     async () => await Actions.getAsset({ assetKey })
@@ -41,15 +45,18 @@ const Chart = ({ assetKey }: ChartProps) => {
     return <p>Encountered an error</p>;
   }
 
+  const dataset = Utilities.getDataset(data!.values);
+
   return (
     <div css={STYLES_WRAPPER}>
       <div css={STYLES_HEADER}>
         <p className="title">{data?.symbol}</p>
-        <div></div>
+        <div>
+          <Line data={dataset} options={Constants.chartConfig} />
+        </div>
       </div>
-      <svg />
     </div>
   );
 };
 
-export default Chart;
+export default LineChart;

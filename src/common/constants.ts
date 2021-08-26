@@ -13,3 +13,28 @@ export const sizes = {
 
   maxWidth: "1200px",
 };
+
+export const chartConfig = {
+  scales: {
+    x: {
+      type: "timeseries",
+      time: {
+        stepSize: 3,
+      },
+    },
+  },
+  elements: {
+    line: {
+      borderJoinStyle: "round",
+      tension: 0.4,
+    },
+    point: {
+      pointRadius: 0,
+    },
+  },
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
+};
