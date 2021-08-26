@@ -14,7 +14,6 @@ import "chartjs-adapter-moment";
 const STYLES_WRAPPER = css`
   background: ${Constants.colors.black};
   width: 100%;
-  min-height: 35rem;
   border-radius: 2rem;
   margin: 6rem 0;
   padding: 3rem;
