@@ -5,7 +5,13 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import Application from "./components/Application";
 import injectGlobalStyles from "./common/styles/global";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const App = () => {
   return (

@@ -14,7 +14,7 @@ import "chartjs-adapter-moment";
 const STYLES_WRAPPER = css`
   background: ${Constants.colors.black};
   width: 100%;
-  min-height: 40rem;
+  min-height: 35rem;
   border-radius: 2rem;
   margin: 6rem 0;
   padding: 3rem;
@@ -25,6 +25,10 @@ const STYLES_HEADER = css`
     font-size: 1.8rem;
     font-weight: 600;
   }
+`;
+
+const STYLES_LINES_CHART = css`
+  margin: 4rem 0 0;
 `;
 
 type ChartProps = {
@@ -51,7 +55,7 @@ const LineChart = ({ assetKey }: ChartProps) => {
     <div css={STYLES_WRAPPER}>
       <div css={STYLES_HEADER}>
         <p className="title">{data?.symbol}</p>
-        <div>
+        <div css={STYLES_LINES_CHART}>
           <Line data={dataset} options={Constants.chartConfig} />
         </div>
       </div>

@@ -59,3 +59,27 @@ export const getDataset = (data: ChartData) => ({
     },
   ],
 });
+
+type TooltipItem = {
+  parsed: {
+    x: number;
+    y: number;
+  };
+};
+
+export const getTooltipTitle = (item: TooltipItem[]) => {
+  let amount = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(item[0].parsed.y);
+  return amount;
+};
+
+export const getTooltipLabel = () => "";
+
+export const getTooltipFooter = (item: TooltipItem[]) => {
+  let timestamp = item[0].parsed.x;
+  return new Intl.DateTimeFormat("en-US", {
+    dateStyle: "full",
+  }).format(timestamp);
+};
