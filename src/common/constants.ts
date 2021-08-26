@@ -62,10 +62,15 @@ export const chartConfig = {
       titleFont: {
         size: 16,
       },
+      titleAlign: "center",
       titleMarginBottom: 0,
       footerFont: {
         weight: "normal",
       },
+      footerAlign: "center",
+      xAlign: "center",
+      yAlign: "bottom",
+      backgroundColor: "rgba(255, 255, 255, 0.28)",
       callbacks: {
         title: Utilities.getTooltipTitle,
         label: Utilities.getTooltipLabel,
