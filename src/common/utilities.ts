@@ -89,3 +89,8 @@ export const getDropdownOptions = (
 ) => {
   return data.map((item) => ({ value: item.slug, label: item.symbol }));
 };
+
+export const formatAssetNumber = (num: number, style?: string) =>
+  new Intl.NumberFormat("en-US", { style, maximumFractionDigits: 2 }).format(
+    num
+  );

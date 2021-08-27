@@ -5,10 +5,6 @@ import React from "react";
 /** @jsx jsx */
 import { css } from "@emotion/react";
 
-type Spinner = {
-  size?: string;
-};
-
 const STYLES_LOADER_SPINNER = (size?: string) => css`
   display: inline-block;
   width: ${size ? size : "48px"};
@@ -24,6 +20,10 @@ const STYLES_LOADER_SPINNER = (size?: string) => css`
     }
   }
 `;
+
+type Spinner = {
+  size?: string;
+};
 
 const LoaderSpinner = ({ size, ...props }: Spinner) => (
   <div css={STYLES_LOADER_SPINNER(size)} {...props} />

@@ -7,15 +7,12 @@ import Select, { StylesConfig } from "react-select";
 import { css } from "@emotion/react";
 import { Option } from "../types/dropdown";
 
-type IsMulti = false;
-
 const customStyles: StylesConfig<Option, IsMulti> = {
   control: (provided, state) => ({
     ...provided,
     backgroundColor: Constants.colors.bgColor200,
     borderColor: Constants.colors.bgColor200,
     boxShadow: state.isFocused ? "none" : provided.boxShadow,
-
     fontSize: "1.4rem",
 
     "&:hover": {
@@ -26,7 +23,7 @@ const customStyles: StylesConfig<Option, IsMulti> = {
     ...provided,
     color: Constants.colors.white,
     fontSize: "1.6rem",
-    fontWeight: 600,
+    fontWeight: 500,
   }),
   indicatorSeparator: (provided) => ({
     ...provided,
@@ -75,15 +72,18 @@ const customStyles: StylesConfig<Option, IsMulti> = {
   }),
 };
 
+const STYLES_WRAPPER = css`
+  max-width: 10rem;
+  width: 100%;
+`;
+
+type IsMulti = false;
+
 type DropdownProps = {
   options: Option[];
   selectedValue: Option;
   handleDropdownChange: (value: Option) => void;
 };
-
-const STYLES_WRAPPER = css`
-  max-width: 10rem;
-`;
 
 const Dropdown = ({
   options,

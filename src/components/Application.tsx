@@ -13,10 +13,20 @@ import { useQuery } from "react-query";
 const STYLES_WRAPPER = css`
   max-width: ${Constants.sizes.maxWidth};
   margin: 6rem auto;
+  padding: 0 2rem;
 `;
 
 const STYLES_TITLE = css`
   font-size: 3rem;
+`;
+
+const STYLES_ATTRIBUTION = css`
+  font-size: 1.4rem;
+
+  a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+  }
 `;
 
 const Application = () => {
@@ -25,11 +35,10 @@ const Application = () => {
     label: string;
   }>({ value: "yfi", label: "YFI" });
 
-  const {
-    isLoading,
-    error,
-    data: assets,
-  } = useQuery("assets", async () => await Actions.getAssets());
+  const { data: assets } = useQuery(
+    "assets",
+    async () => await Actions.getAssets()
+  );
 
   let dropdownOptions;
   if (assets) {
@@ -48,6 +57,9 @@ const Application = () => {
           dropdownValue={selectedAsset}
           handleDropdownChange={setSelectedAsset}
         />
+        <p css={STYLES_ATTRIBUTION}>
+          Powered by: <a href="https://messari.io/api/docs">Messario API</a>
+        </p>
       </div>
     </section>
   );
