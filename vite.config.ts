@@ -12,4 +12,7 @@ export default defineConfig({
       },
     }),
   ],
+  esbuild: {
+    jsxInject: `import { jsx } from '@emotion/react'`,
+  },
 });
