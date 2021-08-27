@@ -33,9 +33,10 @@ const STYLES_LINES_CHART = css`
 
 type ChartProps = {
   assetKey: string;
+  dropdownOptions: { value: string; label: string }[];
 };
 
-const LineChart = ({ assetKey }: ChartProps) => {
+const LineChart = ({ assetKey, dropdownOptions }: ChartProps) => {
   const { isLoading, error, data } = useQuery(
     "asset",
     async () => await Actions.getAsset({ assetKey })
@@ -54,7 +55,7 @@ const LineChart = ({ assetKey }: ChartProps) => {
   return (
     <div css={STYLES_WRAPPER}>
       <div css={STYLES_HEADER}>
-        <Dropdown options={[{ value: "yfi", label: "YFI" }]} />
+        <Dropdown options={dropdownOptions} />
       </div>
       <div css={STYLES_LINES_CHART}>
         <Line data={dataset} options={Constants.chartConfig} />

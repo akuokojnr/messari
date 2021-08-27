@@ -83,3 +83,9 @@ export const getTooltipFooter = (item: TooltipItem[]) => {
     dateStyle: "full",
   }).format(timestamp);
 };
+
+export const getDropdownOptions = (
+  data: { slug: string; symbol: string }[]
+) => {
+  return data.map((item) => ({ value: item.slug, label: item.symbol }));
+};

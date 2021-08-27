@@ -45,6 +45,19 @@ const customStyles: StylesConfig<OptionType, IsMulti> = {
     backgroundColor: Constants.colors.bgColor200,
     padding: "0.5rem 1rem",
   }),
+  menuList: (provided) => ({
+    ...provided,
+    "-ms-overflow-style": "none",
+    scrollbarWidth: "none",
+
+    "&::-webkit-scrollbar": {
+      width: "0.3rem",
+    },
+
+    "&::-webkit-scrollbar-thumb": {
+      background: Constants.colors.bgHighlight,
+    },
+  }),
   option: (provided, state) => ({
     ...provided,
     backgroundColor: state.isSelected
@@ -71,7 +84,7 @@ type DropdownProps = {
 };
 
 const STYLES_WRAPPER = css`
-  max-width: 8rem;
+  max-width: 10rem;
 `;
 
 const Dropdown = ({ options }: DropdownProps) => {
