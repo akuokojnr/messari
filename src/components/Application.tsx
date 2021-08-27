@@ -4,6 +4,7 @@ import * as Utilities from "../common/utilities";
 
 import React from "react";
 import Chart from "./Chart";
+import Table from "./Table";
 
 /** @jsx jsx */
 import { useState } from "react";
@@ -48,6 +49,7 @@ const Application = () => {
           dropdownValue={selectedAsset}
           handleDropdownChange={setSelectedAsset}
         />
+        <Table title="Market data" />
       </div>
     </section>
   );

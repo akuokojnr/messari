@@ -15,7 +15,6 @@ const customStyles: StylesConfig<Option, IsMulti> = {
     backgroundColor: Constants.colors.bgColor200,
     borderColor: Constants.colors.bgColor200,
     boxShadow: state.isFocused ? "none" : provided.boxShadow,
-
     fontSize: "1.4rem",
 
     "&:hover": {
@@ -26,7 +25,7 @@ const customStyles: StylesConfig<Option, IsMulti> = {
     ...provided,
     color: Constants.colors.white,
     fontSize: "1.6rem",
-    fontWeight: 600,
+    fontWeight: 500,
   }),
   indicatorSeparator: (provided) => ({
     ...provided,
@@ -83,6 +82,7 @@ type DropdownProps = {
 
 const STYLES_WRAPPER = css`
   max-width: 10rem;
+  width: 100%;
 `;
 
 const Dropdown = ({

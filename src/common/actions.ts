@@ -28,8 +28,35 @@ export const getAsset = async ({
   }
 
   let { id, name, symbol, values } = res.data;
-
   return { id, name, symbol, values };
+};
+
+type GetAssetMetrics = {
+  id: string;
+  market_data: {
+    price_usd: number;
+    price_btc: number;
+    price_eth: number;
+    volume_last_24_hours: number;
+    percent_change_usd_last_24_hours: number;
+    percent_change_btc_last_24_hours: number;
+    percent_change_eth_last_24_hours: number;
+  };
+};
+
+export const getAssetMetrics = async ({
+  assetKey,
+}: GetAssetParams): Promise<GetAssetMetrics> => {
+  let res = await returnJSON(
+    `https://data.messari.io/api/v1/assets/${assetKey}/metrics`
+  );
+
+  if (res.status?.error_code) {
+    throw new Error(res.status.error_message);
+  }
+
+  let { id, market_data } = res.data;
+  return { id, market_data };
 };
 
 type GetAllAssets = {

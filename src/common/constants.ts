@@ -5,6 +5,8 @@ export const colors = {
   black: "#050309",
   gray: "#AAAEBE",
   blue: "#180ED9",
+  green: "#37AA6D",
+  red: "#C1545E",
 
   text: "#000000",
 
@@ -12,6 +14,8 @@ export const colors = {
   bgColor100: "#2A2F39",
   bgColor200: "#1A1E23",
   bgHighlight: "#323844",
+
+  borderColor: "rgba(255, 255, 255, 0.16)",
 };
 
 export const sizes = {

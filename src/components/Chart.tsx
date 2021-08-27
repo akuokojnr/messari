@@ -5,6 +5,7 @@ import * as Utilities from "../common/utilities";
 import React from "react";
 import Dropdown from "./Dropdown";
 import Spinner from "./Spinner";
+import AssetMetrics from "./AssetMetrics";
 
 /** @jsx jsx */
 import { css } from "@emotion/react";
@@ -24,10 +25,7 @@ const STYLES_WRAPPER = css`
 `;
 
 const STYLES_HEADER = css`
-  .title {
-    font-size: 1.8rem;
-    font-weight: 600;
-  }
+  display: flex;
 `;
 
 const STYLES_LINES_CHART = css`
@@ -58,6 +56,33 @@ const STYLES_ERROR = css`
   }
 `;
 
+const STYLES_CARD = css`
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid rgba(255, 255, 255, 0.16);
+
+  .name {
+    font-size: 1.4rem;
+    margin: 0 0 1rem;
+    color: ${Constants.colors.gray};
+  }
+
+  .price {
+    font-size: 2.8rem;
+    display: flex;
+
+    span {
+      display: inline-block;
+    }
+
+    span + span {
+      font-size: 1.4rem;
+      margin: 0 0 0 auto;
+      color: ${Constants.colors.gray};
+    }
+  }
+`;
+
 type ChartProps = {
   assetKey: string;
   dropdownOptions: Option[];
@@ -76,30 +101,50 @@ const LineChart = ({
     async () => await Actions.getAsset({ assetKey })
   );
 
+  const { data: assetMetrics } = useQuery(
+    ["asset-metric", assetKey],
+    async () => await Actions.getAssetMetrics({ assetKey })
+  );
+  console.log(assetMetrics);
+
   const dataset = data && Utilities.getDataset(data!.values);
 
   const refreshPage = () => window.location.reload();
 
   return (
     <div css={STYLES_WRAPPER}>
-      <div css={STYLES_HEADER}>
-        <Dropdown
-          options={dropdownOptions}
-          selectedValue={dropdownValue}
-          handleDropdownChange={handleDropdownChange}
-        />
-      </div>
-      <div css={STYLES_LINES_CHART}>
-        {isLoading ? (
-          <Spinner size="3rem" />
-        ) : error ? (
-          <div css={STYLES_ERROR}>
-            <p>Oops! We encountered an error.</p>
-            <button onClick={refreshPage}>Try again</button>
-          </div>
-        ) : (
-          <Line data={dataset} options={Constants.chartConfig} />
-        )}
+      {/* <div>
+        <div css={STYLES_CARD}>
+          <p className="name">Bitcoin</p>
+          <p className="price">
+            <span>$450,028</span>
+            <span>BTC</span>
+          </p>
+        </div>
+      </div>*/}
+      <div>
+        <div css={STYLES_HEADER}>
+          <Dropdown
+            options={dropdownOptions}
+            selectedValue={dropdownValue}
+            handleDropdownChange={handleDropdownChange}
+          />
+          {assetMetrics?.market_data && (
+            <AssetMetrics data={assetMetrics?.market_data} />
+          )}
+        </div>
+        <div css={STYLES_LINES_CHART}>
+          {isLoading ? (
+            <Spinner size="3rem" />
+          ) : error ? (
+            <div css={STYLES_ERROR}>
+              <p>Oops! We encountered an error.</p>
+              <button onClick={refreshPage}>Try again</button>
+            </div>
+          ) : (
+            <Line data={dataset} options={Constants.chartConfig} />
+          )}
+        </div>
       </div>
     </div>
   );
