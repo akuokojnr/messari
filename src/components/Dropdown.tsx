@@ -5,15 +5,11 @@ import Select, { StylesConfig } from "react-select";
 
 /** @jsx jsx */
 import { css } from "@emotion/react";
-
-type OptionType = {
-  value: string;
-  label: string;
-};
+import { Option } from "../types/dropdown";
 
 type IsMulti = false;
 
-const customStyles: StylesConfig<OptionType, IsMulti> = {
+const customStyles: StylesConfig<Option, IsMulti> = {
   control: (provided, state) => ({
     ...provided,
     backgroundColor: Constants.colors.bgColor200,
@@ -47,7 +43,7 @@ const customStyles: StylesConfig<OptionType, IsMulti> = {
   }),
   menuList: (provided) => ({
     ...provided,
-    "-ms-overflow-style": "none",
+    msOverflowStyle: "none",
     scrollbarWidth: "none",
 
     "&::-webkit-scrollbar": {
@@ -80,17 +76,28 @@ const customStyles: StylesConfig<OptionType, IsMulti> = {
 };
 
 type DropdownProps = {
-  options: OptionType[];
+  options: Option[];
+  selectedValue: Option;
+  handleDropdownChange: (value: Option) => void;
 };
 
 const STYLES_WRAPPER = css`
   max-width: 10rem;
 `;
 
-const Dropdown = ({ options }: DropdownProps) => {
+const Dropdown = ({
+  options,
+  selectedValue,
+  handleDropdownChange,
+}: DropdownProps) => {
   return (
     <div css={STYLES_WRAPPER}>
-      <Select styles={customStyles} options={options} />
+      <Select
+        styles={customStyles}
+        options={options}
+        value={selectedValue}
+        onChange={(value) => handleDropdownChange(value!)}
+      />
     </div>
   );
 };

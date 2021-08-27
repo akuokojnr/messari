@@ -9,6 +9,7 @@ import Dropdown from "./Dropdown";
 import { css } from "@emotion/react";
 import { useQuery } from "react-query";
 import { Line } from "react-chartjs-2";
+import { Option } from "../types/dropdown";
 
 import "chartjs-adapter-moment";
 
@@ -33,12 +34,19 @@ const STYLES_LINES_CHART = css`
 
 type ChartProps = {
   assetKey: string;
-  dropdownOptions: { value: string; label: string }[];
+  dropdownOptions: Option[];
+  dropdownValue: Option;
+  handleDropdownChange: (value: Option) => void;
 };
 
-const LineChart = ({ assetKey, dropdownOptions }: ChartProps) => {
+const LineChart = ({
+  assetKey,
+  dropdownOptions,
+  dropdownValue,
+  handleDropdownChange,
+}: ChartProps) => {
   const { isLoading, error, data } = useQuery(
-    "asset",
+    ["asset", assetKey],
     async () => await Actions.getAsset({ assetKey })
   );
 
@@ -55,7 +63,11 @@ const LineChart = ({ assetKey, dropdownOptions }: ChartProps) => {
   return (
     <div css={STYLES_WRAPPER}>
       <div css={STYLES_HEADER}>
-        <Dropdown options={dropdownOptions} />
+        <Dropdown
+          options={dropdownOptions}
+          selectedValue={dropdownValue}
+          handleDropdownChange={handleDropdownChange}
+        />
       </div>
       <div css={STYLES_LINES_CHART}>
         <Line data={dataset} options={Constants.chartConfig} />
