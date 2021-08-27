@@ -9,7 +9,7 @@ export const colors = {
 
   bgColor: "#111317",
   bgColor100: "#2A2F39",
-  bgColor200: "#22262E",
+  bgColor200: "#1A1E23",
   bgHighlight: "#323844",
 };
 

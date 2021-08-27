@@ -22,7 +22,6 @@ const customStyles: StylesConfig<OptionType, IsMulti> = {
     fontSize: "1.4rem",
 
     "&:hover": {
-      // borderColor: Constants.colors.bgColor,
       cursor: "pointer",
     },
   }),
@@ -71,7 +70,7 @@ type DropdownProps = {
 };
 
 const STYLES_WRAPPER = css`
-  max-width: 10rem;
+  max-width: 8rem;
 `;
 
 const Dropdown = ({ options }: DropdownProps) => {
