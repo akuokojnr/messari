@@ -31,3 +31,25 @@ export const getAsset = async ({
 
   return { id, name, symbol, values };
 };
+
+type AllAssets = {
+  id: string;
+  symbol: string;
+  slug: string;
+};
+
+export const getAssets = async (): Promise<AllAssets[]> => {
+  let res = await returnJSON(`https://data.messari.io/api/v1/assets/`);
+
+  if (res.status?.error_code) {
+    throw new Error(res.status.error_message);
+  }
+
+  let result = res.data.map(({ id, symbol, slug }: AllAssets) => ({
+    id,
+    symbol,
+    slug,
+  }));
+
+  return result;
+};

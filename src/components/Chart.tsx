@@ -3,6 +3,7 @@ import * as Actions from "../common/actions";
 import * as Utilities from "../common/utilities";
 
 import React from "react";
+import Dropdown from "./Dropdown";
 
 /** @jsx jsx */
 import { css } from "@emotion/react";
@@ -53,10 +54,10 @@ const LineChart = ({ assetKey }: ChartProps) => {
   return (
     <div css={STYLES_WRAPPER}>
       <div css={STYLES_HEADER}>
-        <p className="title">{data?.symbol}</p>
-        <div css={STYLES_LINES_CHART}>
-          <Line data={dataset} options={Constants.chartConfig} />
-        </div>
+        <Dropdown options={[{ value: "yfi", label: "YFI" }]} />
+      </div>
+      <div css={STYLES_LINES_CHART}>
+        <Line data={dataset} options={Constants.chartConfig} />
       </div>
     </div>
   );

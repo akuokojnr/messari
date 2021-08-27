@@ -4,7 +4,7 @@ import React from "react";
 import Chart from "./Chart";
 
 /** @jsx jsx */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { css } from "@emotion/react";
 
 const STYLES_WRAPPER = css`
@@ -17,7 +17,12 @@ const STYLES_TITLE = css`
 `;
 
 const Application = () => {
+  /* const [selectedAsset, setSelectedAsset] = useState<{value: string; label: string}>({value: "yfi", label: "YFI"}); */
   const [assetKey, setAssetKey] = useState<string>("yfi");
+
+  /* useEffect(() => {
+    
+  }, []) */
 
   return (
     <section>

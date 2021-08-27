@@ -3,10 +3,12 @@ import * as Utilities from "./utilities";
 export const colors = {
   white: "#FFFFFF",
   black: "#050309",
+  gray: "#AAAEBE",
 
   text: "#000000",
 
   bgColor: "#111317",
+  bgColor100: "#2A2F39",
 };
 
 export const sizes = {
