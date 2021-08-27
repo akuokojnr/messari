@@ -4,6 +4,7 @@ import * as Utilities from "../common/utilities";
 
 import React from "react";
 import Dropdown from "./Dropdown";
+import Spinner from "./Spinner";
 
 /** @jsx jsx */
 import { css } from "@emotion/react";
@@ -19,6 +20,7 @@ const STYLES_WRAPPER = css`
   border-radius: 2rem;
   margin: 6rem 0;
   padding: 3rem;
+  min-height: 50rem;
 `;
 
 const STYLES_HEADER = css`
@@ -30,6 +32,30 @@ const STYLES_HEADER = css`
 
 const STYLES_LINES_CHART = css`
   margin: 4rem 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 55rem;
+`;
+
+const STYLES_ERROR = css`
+  p {
+    font-size: 1.6rem;
+  }
+
+  button {
+    width: 100%;
+    max-width: 25rem;
+    background: ${Constants.colors.blue};
+    color: ${Constants.colors.white};
+    text-align: center;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1.2rem;
+    cursor: pointer;
+    margin: 2rem 0;
+  }
 `;
 
 type ChartProps = {
@@ -50,15 +76,9 @@ const LineChart = ({
     async () => await Actions.getAsset({ assetKey })
   );
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  const dataset = data && Utilities.getDataset(data!.values);
 
-  if (error) {
-    return <p>Encountered an error</p>;
-  }
-
-  const dataset = Utilities.getDataset(data!.values);
+  const refreshPage = () => window.location.reload();
 
   return (
     <div css={STYLES_WRAPPER}>
@@ -70,7 +90,16 @@ const LineChart = ({
         />
       </div>
       <div css={STYLES_LINES_CHART}>
-        <Line data={dataset} options={Constants.chartConfig} />
+        {isLoading ? (
+          <Spinner size="3rem" />
+        ) : error ? (
+          <div css={STYLES_ERROR}>
+            <p>Oops! We encountered an error.</p>
+            <button onClick={refreshPage}>Try again</button>
+          </div>
+        ) : (
+          <Line data={dataset} options={Constants.chartConfig} />
+        )}
       </div>
     </div>
   );
