@@ -35,11 +35,10 @@ const Application = () => {
     label: string;
   }>({ value: "yfi", label: "YFI" });
 
-  const {
-    isLoading,
-    error,
-    data: assets,
-  } = useQuery("assets", async () => await Actions.getAssets());
+  const { data: assets } = useQuery(
+    "assets",
+    async () => await Actions.getAssets()
+  );
 
   let dropdownOptions;
   if (assets) {

@@ -7,8 +7,6 @@ import Select, { StylesConfig } from "react-select";
 import { css } from "@emotion/react";
 import { Option } from "../types/dropdown";
 
-type IsMulti = false;
-
 const customStyles: StylesConfig<Option, IsMulti> = {
   control: (provided, state) => ({
     ...provided,
@@ -74,16 +72,18 @@ const customStyles: StylesConfig<Option, IsMulti> = {
   }),
 };
 
+const STYLES_WRAPPER = css`
+  max-width: 10rem;
+  width: 100%;
+`;
+
+type IsMulti = false;
+
 type DropdownProps = {
   options: Option[];
   selectedValue: Option;
   handleDropdownChange: (value: Option) => void;
 };
-
-const STYLES_WRAPPER = css`
-  max-width: 10rem;
-  width: 100%;
-`;
 
 const Dropdown = ({
   options,
