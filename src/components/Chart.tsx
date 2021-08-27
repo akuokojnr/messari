@@ -19,7 +19,7 @@ const STYLES_WRAPPER = css`
   background: ${Constants.colors.black};
   width: 100%;
   border-radius: 2rem;
-  margin: 6rem 0 3rem;
+  margin: 3rem 0 3rem;
   padding: 3rem;
   min-height: 50rem;
 `;

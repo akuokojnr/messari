@@ -75,6 +75,7 @@ export const getTooltipTitle = (item: TooltipItem[]) => {
   return amount;
 };
 
+// (NOTE: daniel) Necessary to prevent default chart.js label from rendering
 export const getTooltipLabel = () => "";
 
 export const getTooltipFooter = (item: TooltipItem[]) => {
@@ -85,9 +86,13 @@ export const getTooltipFooter = (item: TooltipItem[]) => {
 };
 
 export const getDropdownOptions = (
-  data: { slug: string; symbol: string }[]
+  data: { slug: string; symbol: string; name: string }[]
 ) => {
-  return data.map((item) => ({ value: item.slug, label: item.symbol }));
+  return data.map((item) => ({
+    value: item.slug,
+    label: item.symbol,
+    name: item.name,
+  }));
 };
 
 export const formatAssetNumber = (num: number, style?: string) =>

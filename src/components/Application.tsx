@@ -12,7 +12,7 @@ import { useQuery } from "react-query";
 
 const STYLES_WRAPPER = css`
   max-width: ${Constants.sizes.maxWidth};
-  margin: 6rem auto;
+  margin: 6rem auto 0;
   padding: 0 2rem;
 `;
 
@@ -22,6 +22,7 @@ const STYLES_TITLE = css`
 
 const STYLES_ATTRIBUTION = css`
   font-size: 1.4rem;
+  padding: 2rem 0;
 
   a {
     color: rgba(255, 255, 255, 0.8);
@@ -33,7 +34,8 @@ const Application = () => {
   const [selectedAsset, setSelectedAsset] = useState<{
     value: string;
     label: string;
-  }>({ value: "yfi", label: "YFI" });
+    name: string;
+  }>({ value: "yfi", label: "YFI", name: "yearn.finance" });
 
   const { data: assets } = useQuery(
     "assets",
@@ -50,7 +52,7 @@ const Application = () => {
   return (
     <section>
       <div css={STYLES_WRAPPER}>
-        <h3 css={STYLES_TITLE}>Dashboard</h3>
+        <h3 css={STYLES_TITLE}>{selectedAsset.name}</h3>
         <Chart
           assetKey={selectedAsset.value}
           dropdownOptions={dropdownOptions}

@@ -63,6 +63,7 @@ type GetAllAssets = {
   id: string;
   symbol: string;
   slug: string;
+  name: string;
   metrics: {
     [key: string]: object;
   };
@@ -70,19 +71,22 @@ type GetAllAssets = {
 
 export const getAssets = async (): Promise<GetAllAssets[]> => {
   let res = await returnJSON(
-    `https://data.messari.io/api/v1/assets?fields=id,symbol,slug,metrics`
+    `https://data.messari.io/api/v1/assets?fields=id,symbol,slug,name,metrics`
   );
 
   if (res.status?.error_code) {
     throw new Error(res.status.error_message);
   }
 
-  let result = res.data.map(({ id, symbol, slug, metrics }: GetAllAssets) => ({
-    id,
-    symbol,
-    slug,
-    metrics,
-  }));
+  let result = res.data.map(
+    ({ id, symbol, slug, name, metrics }: GetAllAssets) => ({
+      id,
+      symbol,
+      slug,
+      name,
+      metrics,
+    })
+  );
 
   return result;
 };
