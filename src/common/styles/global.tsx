@@ -117,6 +117,11 @@ const GlobalStyles = () => css`
   *:after {
     box-sizing: inherit;
   }
+  &::-webkit-scrollbar,
+  scrollbar-width,
+  -ms-overflow-style {
+    display: none;
+  }
 `;
 
 export default GlobalStyles;

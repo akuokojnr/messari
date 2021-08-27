@@ -5,8 +5,7 @@
     "types": [
       "vite/client",
       "@emotion/react/types/css-prop",
-      "@types/react-select",
-      "@types/react-table"
+      "@types/react-select"
     ],
     "allowJs": false,
     "skipLibCheck": false,
