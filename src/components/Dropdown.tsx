@@ -18,7 +18,8 @@ const customStyles: StylesConfig<OptionType, IsMulti> = {
     ...provided,
     backgroundColor: Constants.colors.bgColor200,
     borderColor: Constants.colors.bgColor200,
-    "box-shadow": state.isFocused && "none",
+    boxShadow: state.isFocused ? "none" : provided.boxShadow,
+
     fontSize: "1.4rem",
 
     "&:hover": {
