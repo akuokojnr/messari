@@ -9,6 +9,8 @@ export const colors = {
 
   bgColor: "#111317",
   bgColor100: "#2A2F39",
+  bgColor200: "#22262E",
+  bgHighlight: "#323844",
 };
 
 export const sizes = {
@@ -16,12 +18,6 @@ export const sizes = {
   md: "1024px",
 
   maxWidth: "1200px",
-};
-
-type TooltipContext = {
-  parsed: {
-    y: number;
-  };
 };
 
 export const chartConfig = {

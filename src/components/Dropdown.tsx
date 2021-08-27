@@ -16,13 +16,13 @@ type IsMulti = false;
 const customStyles: StylesConfig<OptionType, IsMulti> = {
   control: (provided, state) => ({
     ...provided,
-    backgroundColor: Constants.colors.bgColor,
-    borderColor: Constants.colors.bgColor,
+    backgroundColor: Constants.colors.bgColor200,
+    borderColor: Constants.colors.bgColor200,
     "box-shadow": state.isFocused && "none",
     fontSize: "1.4rem",
 
     "&:hover": {
-      borderColor: Constants.colors.bgColor,
+      // borderColor: Constants.colors.bgColor,
       cursor: "pointer",
     },
   }),
@@ -42,14 +42,14 @@ const customStyles: StylesConfig<OptionType, IsMulti> = {
   }),
   menu: (provided) => ({
     ...provided,
-    backgroundColor: Constants.colors.bgColor,
+    backgroundColor: Constants.colors.bgColor200,
     padding: "0.5rem 1rem",
   }),
   option: (provided, state) => ({
     ...provided,
     backgroundColor: state.isSelected
-      ? Constants.colors.bgColor100
-      : Constants.colors.bgColor,
+      ? Constants.colors.bgHighlight
+      : Constants.colors.bgColor200,
     color: state.isSelected ? Constants.colors.white : Constants.colors.gray,
     fontSize: "1.4rem",
     borderRadius: 5,
@@ -57,7 +57,7 @@ const customStyles: StylesConfig<OptionType, IsMulti> = {
     "&:hover": {
       cursor: "pointer",
       color: Constants.colors.white,
-      backgroundColor: Constants.colors.bgColor100,
+      backgroundColor: Constants.colors.bgHighlight,
     },
 
     "&:active": {
