@@ -22,7 +22,7 @@ export const sizes = {
   sm: "768px",
   md: "1024px",
 
-  maxWidth: "1200px",
+  maxWidth: "1240px",
 };
 
 export const chartConfig = {

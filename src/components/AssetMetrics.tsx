@@ -7,12 +7,20 @@ import React from "react";
 import { css } from "@emotion/react";
 
 const STYLES_WRAPPER = css`
-  margin: 0 0 0 auto;
+  margin: 2rem 0 0 auto;
   display: flex;
+  flex-basis: 10rem;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   max-width: 50rem;
   width: 100%;
+
+  @media screen and (min-width: ${Constants.sizes.sm}) {
+    margin-top: 0;
+    flex-basis: auto;
+    flex-wrap: nowrap;
+  }
 
   .title {
     font-size: 1.2rem;
@@ -25,9 +33,6 @@ const STYLES_WRAPPER = css`
 
     span {
       display: inline-block;
-    }
-
-    span + span {
     }
   }
 `;

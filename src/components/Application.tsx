@@ -13,6 +13,7 @@ import { useQuery } from "react-query";
 const STYLES_WRAPPER = css`
   max-width: ${Constants.sizes.maxWidth};
   margin: 6rem auto;
+  padding: 0 2rem;
 `;
 
 const STYLES_TITLE = css`

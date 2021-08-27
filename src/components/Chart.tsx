@@ -26,6 +26,11 @@ const STYLES_WRAPPER = css`
 
 const STYLES_HEADER = css`
   display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: ${Constants.sizes.sm}) {
+    flex-direction: row;
+  }
 `;
 
 const STYLES_LINES_CHART = css`
@@ -33,7 +38,11 @@ const STYLES_LINES_CHART = css`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 55rem;
+  min-height: 30rem;
+
+  @media screen and (min-width: ${Constants.sizes.sm}) {
+    min-height: 55rem;
+  }
 `;
 
 const STYLES_ERROR = css`
@@ -53,33 +62,6 @@ const STYLES_ERROR = css`
     padding: 1.2rem;
     cursor: pointer;
     margin: 2rem 0;
-  }
-`;
-
-const STYLES_CARD = css`
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  border: 0.1rem solid rgba(255, 255, 255, 0.16);
-
-  .name {
-    font-size: 1.4rem;
-    margin: 0 0 1rem;
-    color: ${Constants.colors.gray};
-  }
-
-  .price {
-    font-size: 2.8rem;
-    display: flex;
-
-    span {
-      display: inline-block;
-    }
-
-    span + span {
-      font-size: 1.4rem;
-      margin: 0 0 0 auto;
-      color: ${Constants.colors.gray};
-    }
   }
 `;
 
@@ -105,7 +87,6 @@ const LineChart = ({
     ["asset-metric", assetKey],
     async () => await Actions.getAssetMetrics({ assetKey })
   );
-  console.log(assetMetrics);
 
   const dataset = data && Utilities.getDataset(data!.values);
 
@@ -113,15 +94,6 @@ const LineChart = ({
 
   return (
     <div css={STYLES_WRAPPER}>
-      {/* <div>
-        <div css={STYLES_CARD}>
-          <p className="name">Bitcoin</p>
-          <p className="price">
-            <span>$450,028</span>
-            <span>BTC</span>
-          </p>
-        </div>
-      </div>*/}
       <div>
         <div css={STYLES_HEADER}>
           <Dropdown
