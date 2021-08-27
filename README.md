@@ -15,3 +15,5 @@ This is a web app built to visualize crypocurrency asset data pull from [Messari
 npm install
 npm run dev
 ```
+
+Visit http://localhost:3000 to view the application
