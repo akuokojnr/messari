@@ -12,6 +12,8 @@ This is a web app built to visualize crypocurrency asset data pull from [Messari
 - TypeScript
 - Emotion.js, for styling
 - Vite.js, build tool
+- React Query
+- Chart.js, for visualization
 
 ## Install and run
 
